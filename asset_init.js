@@ -1,14 +1,17 @@
 (function (global) {
 
 var init_assets = function () {
-  SpritePool.create('land', 'assets/rect_med.png');
+  SpritePool.create('land', {
+    path: 'assets/noise_med.png',
+    color: 0xcccc66
+  });
   SpritePool.create('dock', {
-    path: 'assets/rect_med.png',
-    color: 0xdddd88
+    path: 'assets/dock_med.png',
+    color: 0xffffff
   });
   SpritePool.create('water', {
-    path: 'assets/rect_med.png',
-    color: 0x88dddd
+    path: 'assets/water_med.png',
+    color: 0xffffff
   });
 
   TileSet.create('land');
