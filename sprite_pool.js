@@ -3,9 +3,11 @@
 var SpritePool = function (options) {
   options = _.defaults(options, {
     path: null,
+    color: 0xffffff,
     initial_size: 10
   });
   this.texture = new PIXI.Texture.fromImage(options.path);
+  this.color = options.color;
   this.pool = [];
   for (var i = 0; i < options.initial_size; i++) {
     var pool_obj = {
@@ -13,7 +15,7 @@ var SpritePool = function (options) {
       sprite: new PIXI.Sprite(this.texture)
     };
     pool_obj.sprite.visible = false;
-    dock_gaem.stage.addChild(pool_obj.sprite);
+    pool_obj.sprite.tint = this.color;
     this.pool.push(pool_obj);
   }
 
@@ -42,11 +44,11 @@ SpritePool.prototype = {
     }
     // we need to create a new sprite
     var sprite = new PIXI.Sprite(this.texture);
+    sprite._tint = this.color;
     var pool_obj = {
       in_use: true,
       sprite: sprite
     };
-    dock_gaem.stage.addChild(sprite);
     this.pool.push(pool_obj);
     return sprite;
   }

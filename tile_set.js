@@ -19,11 +19,12 @@ TileSet.prototype = {
     };
   }
 };
-TileSet.sets = {
-  ground : new TileSet({
-    name: 'ground',
+TileSet.sets = {};
+TileSet.create = function (name, options) {
+  options = _.defaults(options || {}, {
+    name: name,
     create_sprites: function (i, j, map) {
-      var sprite = SpritePool.get('rect_med');
+      var sprite = SpritePool.get(name);
       sprite.anchor.x = 0.5;
       sprite.anchor.y = 0.5;
 
@@ -31,12 +32,20 @@ TileSet.sets = {
       sprite.x = loc.x;
       sprite.y = loc.y;
 
-      return [sprite];
+      sprite.visible = true;
+
+      var cont = new PIXI.Container();
+      cont.addChild(sprite);
+
+      return cont;
     }
-  }),
-
+  });
+  var tile_set = new TileSet(options);
+  TileSet.sets[tile_set.name] = tile_set;
 };
-
+TileSet.create_sprites = function (name, i, j, map) {
+  return TileSet.sets[name].create_sprites(i, j, map);
+};
 
 global.TileSet = TileSet;
 

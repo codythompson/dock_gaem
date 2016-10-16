@@ -1,15 +1,10 @@
 (function (global) {
 
 var test_setup = function (gaem) {
-  SpritePool.create('rect_med', 'assets/rect_med.png');
-  var sprots = TileSet.sets.ground.create_sprites(0, 0, null);
-  for (var i = 0; i < sprots.length; i++) {
-    sprots[i].visible = true;
-  }
-  sprots = TileSet.sets.ground.create_sprites(2, 1, null);
-  for (var i = 0; i < sprots.length; i++) {
-    sprots[i].visible = true;
-  }
+  // TileSet.create_sprites('dock', 0, 0, null);
+  // TileSet.create_sprites('dock', 0, 0, null);
+  // TileSet.create_sprites('water', 1, 1, null);
+  tm = new TileMap();
 };
 
 var dock_gaem = {
@@ -21,6 +16,8 @@ var dock_gaem = {
     document.body.appendChild(this.renderer.view);
 
     this.stage = new PIXI.Container();
+
+    init_assets();
 
     test_setup(this);
 
