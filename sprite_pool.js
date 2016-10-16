@@ -44,7 +44,7 @@ SpritePool.prototype = {
     }
     // we need to create a new sprite
     var sprite = new PIXI.Sprite(this.texture);
-    sprite._tint = this.color;
+    sprite.tint = this.color;
     var pool_obj = {
       in_use: true,
       sprite: sprite
