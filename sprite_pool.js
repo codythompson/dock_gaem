@@ -14,7 +14,7 @@ var SpritePool = function (options) {
       in_use: false,
       sprite: new PIXI.Sprite(this.texture)
     };
-    pool_obj.sprite.visible = false;
+    // pool_obj.sprite.visible = false;
     pool_obj.sprite.tint = this.color;
     this.pool.push(pool_obj);
   }
@@ -25,7 +25,7 @@ SpritePool.prototype = {
     for (var i = 0; i < this.pool.length; i++) {
       var pool_obj = this.pool[i];
       if (pool_obj.sprite == sprite) {
-        pool_obj.sprite.visible = false;
+        // pool_obj.sprite.visible = false;
         pool_obj.in_use = false;
         return;
       }

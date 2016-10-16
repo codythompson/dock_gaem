@@ -5,6 +5,7 @@ var test_setup = function (gaem) {
   // TileSet.create_sprites('dock', 0, 0, null);
   // TileSet.create_sprites('water', 1, 1, null);
   tm = new TileMap();
+  gaem.stage.scale.set(0.5);
 };
 
 var dock_gaem = {
