@@ -4,8 +4,19 @@ var test_setup = function (gaem) {
   // TileSet.create_sprites('dock', 0, 0, null);
   // TileSet.create_sprites('dock', 0, 0, null);
   // TileSet.create_sprites('water', 1, 1, null);
-  tm = new TileMap();
-  gaem.stage.scale.set(0.5);
+  tm = new TileMap({
+    // tiles_wide: 2,
+    // tiles_high: 2,
+  });
+  gaem.stage.addChild(tm.cont);
+  // gaem.stage.scale.set(0.5);
+
+  cross_hair = PIXI.Sprite.fromImage('assets/rect_med.png');
+  cross_hair.anchor.x = 0.5;
+  cross_hair.anchor.y = 0.5;
+  cross_hair.scale.set(0.1);
+  cross_hair.tint = 0xff0000;
+  gaem.stage.addChild(cross_hair);
 };
 
 var dock_gaem = {
@@ -22,6 +33,8 @@ var dock_gaem = {
     document.body.appendChild(this.renderer.view);
 
     this.stage = new PIXI.Container();
+    this.stage.x = this.renderer.width / 2;
+    this.stage.y = this.renderer.height / 2;
 
     init_assets();
 
