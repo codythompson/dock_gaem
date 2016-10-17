@@ -3,6 +3,7 @@
 var TileMap = function (options) {
   options = _.defaults(options || {}, {
     default_tile_set: 'land',
+    grid_tile_set: 'grid',
     tiles_wide: 10,
     tiles_high: 10,
   });
@@ -13,9 +14,12 @@ var TileMap = function (options) {
     for (var j = 0; j < options.tiles_high; j++) {
       var cont = TileSet.create_sprites(options.default_tile_set, i, j);
       dock_gaem.stage.addChild(cont);
+      var grid_cont = TileSet.create_sprites(options.grid_tile_set, i, j);
+      dock_gaem.stage.addChild(grid_cont);
       column.push({
         tile_set: options.default_tile_set,
-        cont: cont
+        cont: cont,
+        grid_cont: grid_cont
       });
     }
     tiles.push(column);

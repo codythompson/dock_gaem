@@ -13,10 +13,12 @@ var init_assets = function () {
     path: 'assets/water_med.png',
     color: 0xffffff
   });
+  SpritePool.create('grid', 'assets/rect_med.png');
 
   TileSet.create('land');
   TileSet.create('dock');
   TileSet.create('water');
+  TileSet.create('grid');
 };
 
 global.init_assets = init_assets;

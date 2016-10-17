@@ -11,9 +11,14 @@ var test_setup = function (gaem) {
 var dock_gaem = {
   renderer: null,
   stage: null,
+  w: null,
+  h: null,
 
   init: function () {
-    this.renderer = PIXI.autoDetectRenderer(800, 600, {backgroundColor : 0x88ff88});
+    this.w = window.innerWidth;
+    this.h = window.innerHeight;
+
+    this.renderer = PIXI.autoDetectRenderer(this.w, this.h, {backgroundColor : 0x88ff88});
     document.body.appendChild(this.renderer.view);
 
     this.stage = new PIXI.Container();
