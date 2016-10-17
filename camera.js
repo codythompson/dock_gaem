@@ -27,6 +27,10 @@ Camera.prototype = {
       j: j
     };
   },
+  pan: function (x, y) {
+    var coord = this.map.get_tile_coord(x, y);
+    return this.ij(this.i + coord.i, this.j + coord.j);
+  },
   scale: function (x, y) {
     if (arguments.length === 1) {
       y = x;

@@ -62,6 +62,16 @@ TileMap.prototype = {
     };
   },
 
+  get_tile_coord: function (x, y) {
+    var i = x / (this.tile_w * this.cont.scale.x);
+    var j = y / (this.tile_h * this.cont.scale.y);
+
+    return {
+      i: i,
+      j: j
+    };
+  },
+
   get_tiles_wide: function () {
     return this.tiles.length;
   },

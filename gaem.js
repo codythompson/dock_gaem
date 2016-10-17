@@ -11,6 +11,10 @@ var test_setup = function (gaem) {
   camera.ij((tm.get_tiles_wide()-1)/2, (tm.get_tiles_high()-1)/2);
   camera.scale(0.3);
 
+  ctrls = new Controls({
+    camera: camera
+  });
+
   cross_hair = PIXI.Sprite.fromImage('assets/rect_med.png');
   cross_hair.anchor.x = 0.5;
   cross_hair.anchor.y = 0.5;
