@@ -1,8 +1,33 @@
 var Controls = function (options) {
   _.extend(this, _.defaults(options || {}, {
+    mode: Controls.modes.drag,
+    drag_controls: new DragControls(options),
+  }));
+  this.set_mode();
+};
+Controls.prototype = {
+  set_mode: function (mode) {
+    if (arguments.length === 0) {
+      mode = this.mode;
+    }
+
+    this.drag_controls.locked = true;
+    if (mode === Controls.modes.drag) {
+      this.drag_controls.locked = false;
+    }
+  }
+};
+Controls.modes = {
+  drag   : 0,
+  select : 1
+};
+var DragControls = function (options) {
+  _.extend(this, _.defaults(options || {}, {
     el: window,
     camera: null,
   }));
+  this.last_loc = null;
+  this.locked = true;
 
   this.touchstart = this.touchstart.bind(this);
   this.touchmove = this.touchmove.bind(this);
@@ -11,9 +36,7 @@ var Controls = function (options) {
   this.el.addEventListener('touchmove', this.touchmove);
   this.el.addEventListener('touchend', this.touchend);
 };
-Controls.prototype = {
-  last_loc: null,
-
+DragControls.prototype = {
   get_loc: function (e) {
     var x = e.changedTouches[e.changedTouches.length - 1].pageX;
     var y = e.changedTouches[e.changedTouches.length - 1].pageY;
@@ -32,9 +55,17 @@ Controls.prototype = {
   },
 
   touchstart: function (e) {
+    if (this.locked) {
+      this.last_loc = null;
+      return;
+    }
     this.last_loc = this.get_loc(e);
   },
   touchmove: function (e) {
+    if (this.locked) {
+      this.last_loc = null;
+      return;
+    }
     if (!this.last_loc) {
       return;
     }
