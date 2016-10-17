@@ -60,7 +60,14 @@ TileMap.prototype = {
       x: x,
       y: y
     };
-  }
+  },
+
+  get_tiles_wide: function () {
+    return this.tiles.length;
+  },
+  get_tiles_high: function () {
+    return this.tiles[0].length;
+  },
 };
 
 global.TileMap = TileMap;

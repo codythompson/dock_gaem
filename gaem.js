@@ -6,7 +6,8 @@ var test_setup = function (gaem) {
   gaem.stage.addChild(tm.cont);
 
   camera = new Camera({map: tm});
-  camera.ij(0, 0);
+  camera.ij((tm.get_tiles_wide()-1)/2, (tm.get_tiles_high()-1)/2);
+  camera.scale(0.3);
 
   cross_hair = PIXI.Sprite.fromImage('assets/rect_med.png');
   cross_hair.anchor.x = 0.5;
