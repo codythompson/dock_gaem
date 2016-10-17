@@ -2,6 +2,8 @@
 
 var test_setup = function (gaem) {
   tm = new TileMap({
+    tiles_wide: 100,
+    tiles_high: 100,
   });
   gaem.stage.addChild(tm.cont);
 
@@ -16,7 +18,8 @@ var test_setup = function (gaem) {
   cross_hair.tint = 0xff0000;
   gaem.stage.addChild(cross_hair);
 
-
+  stats = new Stats();
+  document.body.appendChild(stats.dom);
 };
 
 var dock_gaem = {
@@ -51,7 +54,11 @@ var dock_gaem = {
   update: function () {
     requestAnimationFrame(this._update_closure);
 
+    stats.begin();
+
     this.renderer.render(this.stage);
+
+    stats.end();
   },
 };
 
