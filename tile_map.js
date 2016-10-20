@@ -29,7 +29,8 @@ var TileMap = function (options) {
       column.push({
         tile_set: options.default_tile_set,
         cont: cont,
-        grid_cont: grid_cont
+        grid_cont: grid_cont,
+        selected: false
       });
     }
     tiles.push(column);
@@ -37,6 +38,17 @@ var TileMap = function (options) {
   this.tiles = tiles;
 };
 TileMap.prototype = {
+  select: function (i, j) {
+    var tile = this.tiles[i][j];
+    tile.selected = true;
+    TileSet.select(tile.tile_set, tile.cont, i, j, this);
+  },
+  deselect: function (i, j) {
+    var tile = this.tiles[i][j];
+    tile.selected = false;
+    TileSet.deselect(tile.tile_set, tile.cont, i, j, this);
+  },
+
   set: function (tile_set, i, j) {
     this.release(i, j);
     var cont = TileSet.create_sprites(tile_set, i, j, this);

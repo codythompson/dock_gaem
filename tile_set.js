@@ -9,13 +9,20 @@ var TileSet = function (options) {
     },
     release_sprites: function (cont, i, j, map) {
       throw '[dock][TileSet][release_sprites] no release_sprites function specified for: ' + options.name;
-    }
+    },
+    select: function (cont, i, j, map) {
+      throw '[dock][TileSet][select] no select function specified for: ' + options.name;
+    },
+    deselect: function (cont, i, j, map) {
+      throw '[dock][TileSet][deselect] no deselect function specified for: ' + options.name;
+    },
   }));
 };
 TileSet.sets = {};
 TileSet.create = function (name, options) {
   options = _.defaults(options || {}, {
     name: name,
+    select_tint: 0x8888ff,
     create_sprites: function (i, j, map) {
       var sprite = SpritePool.get(name);
       sprite.anchor.x = 0.5;
@@ -34,8 +41,20 @@ TileSet.create = function (name, options) {
       cont.visible = false;
       SpritePool.release(name, cont.children[0]);
       cont.removeChildAt(0);
+    },
+    select: function (cont, i, j, map) {
+      this.original_tint = cont.getChildAt(0).tint;
+      for (var i = 0; i < cont.children.length; i++) {
+        cont.getChildAt(i).tint = this.select_tint;
+      }
+    },
+    deselect: function (cont, i, j, map) {
+      for (var i = 0; i < cont.children.length; i++) {
+        cont.getChildAt(i).tint = this.original_tint;
+      }
     }
   });
+  this.original_tint = 0xffffff;
   var tile_set = new TileSet(options);
   TileSet.sets[tile_set.name] = tile_set;
 };
@@ -44,6 +63,12 @@ TileSet.create_sprites = function (name, i, j, map) {
 };
 TileSet.release_sprites = function (name, cont, i, j, map) {
   TileSet.sets[name].release_sprites(cont, i, j, map);
+};
+TileSet.select = function (name, cont, i, j, map) {
+  TileSet.sets[name].select(cont, i, j, map);
+};
+TileSet.deselect = function (name, cont, i, j, map) {
+  TileSet.sets[name].deselect(cont, i, j, map);
 };
 
 global.TileSet = TileSet;

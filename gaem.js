@@ -2,8 +2,8 @@
 
 var test_setup = function (gaem) {
   tm = new TileMap({
-    tiles_wide: 100,
-    tiles_high: 100,
+    tiles_wide: 5,
+    tiles_high: 5,
   });
   gaem.stage.addChild(tm.cont);
 
