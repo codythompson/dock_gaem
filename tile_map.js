@@ -79,8 +79,8 @@ TileMap.prototype = {
     var j = y / (this.tile_h * this.cont.scale.y);
 
     return {
-      i: i,
-      j: j
+      i: i + 0.5,
+      j: j + 0.5
     };
   },
 

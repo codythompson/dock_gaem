@@ -12,7 +12,8 @@ var test_setup = function (gaem) {
   camera.scale(0.3);
 
   ctrls = new Controls({
-    camera: camera
+    camera: camera,
+    mode: Controls.modes.select_box
   });
 
   cross_hair = PIXI.Sprite.fromImage('assets/rect_med.png');

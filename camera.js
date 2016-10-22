@@ -43,6 +43,16 @@ Camera.prototype = {
       scale_x: this.map.cont.scale.x,
       scale_y: this.map.cont.scale.y
     };
+  },
+
+  ij_from_xy: function (x, y) {
+    // make coord rel to center of screen
+    x -= window.innerWidth / 2;
+    y -= window.innerHeight / 2;
+    // make rel to center of map
+    x -= this.map.cont.x;
+    y -= this.map.cont.y;
+    return this.map.get_tile_coord(x, y);
   }
 };
 
