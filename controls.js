@@ -82,7 +82,7 @@ DragControls.prototype = {
 
     var loc = this.get_loc(e);
     var diff = this.get_diff(this.last_loc, loc);
-    camera.pan(-diff.x, -diff.y);
+    this.camera.pan(-diff.x, -diff.y);
     this.last_loc = loc;
   },
   touchend: function (e) {
@@ -128,10 +128,10 @@ SelectBoxControls.prototype = {
 
     var start = this.camera.ij_from_xy(this.start_loc.x, this.start_loc.y);
     var end = (this.end_loc && this.camera.ij_from_xy(this.end_loc.x, this.end_loc.y)) || start;
-    var start_i = Math.floor(Math.min(start.i, end.i));
-    var start_j = Math.floor(Math.min(start.j, end.j));
-    var end_i = Math.floor(Math.max(start.i, end.i));
-    var end_j = Math.floor(Math.max(start.j, end.j));
+    var start_i = Math.round(Math.min(start.i, end.i));
+    var start_j = Math.round(Math.min(start.j, end.j));
+    var end_i = Math.round(Math.max(start.i, end.i));
+    var end_j = Math.round(Math.max(start.j, end.j));
 
     for (var i = start_i; i <= end_i; i++) {
       for (var j = start_j; j <= end_j; j++) {
