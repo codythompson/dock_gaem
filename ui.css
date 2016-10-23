@@ -1,0 +1,50 @@
+.dock_ui_panel {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 144px 16px;
+  z-index: 1;
+}
+
+.dock_ui_panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: blue;
+  opacity: 0.15;
+}
+
+.button {
+  position: relative;
+  width: 144px;
+  height: 144px;
+  background: url('assets/button_up.png');
+}
+.button:active {
+  background: none;
+}
+
+.button:active::after {
+  left: 0;
+  top: 0;
+}
+
+.button::after {
+  content: '';
+  width: 128px;
+  height: 128px;
+  position: absolute;
+  left: 16px;
+  top: 16px;
+}
+
+#dock_gaem_ui_box_select::after {
+  background: url('assets/box_select_icon.png');
+}
+
+#dock_gaem_ui_drag_map::after {
+  background: url('assets/box_drag_icon.png');
+}

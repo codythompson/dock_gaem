@@ -25,6 +25,7 @@ var test_setup = function (gaem) {
   cross_hair.scale.set(0.1);
   cross_hair.tint = 0xff0000;
   gaem.stage.addChild(cross_hair);
+  cross_hair.visible = false;
 
   stats = new Stats();
   document.body.appendChild(stats.dom);
@@ -42,7 +43,7 @@ var dock_gaem = {
     this.w = window.innerWidth;
     this.h = window.innerHeight;
 
-    this.renderer = PIXI.autoDetectRenderer(this.w, this.h, {backgroundColor : 0x88ff88});
+    this.renderer = PIXI.autoDetectRenderer(this.w, this.h, {transparent : true});
     document.body.appendChild(this.renderer.view);
 
     this.stage = new PIXI.Container();
@@ -67,6 +68,10 @@ var dock_gaem = {
 
     this.controls && this.controls.update();
     this.renderer.render(this.stage);
+    if (window.scrn) {
+      window.open(this.renderer.view.toDataURL());
+      scrn = false;
+    }
 
     stats.end();
   },
