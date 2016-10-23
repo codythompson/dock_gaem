@@ -38,13 +38,23 @@ var TileMap = function (options) {
   this.tiles = tiles;
 };
 TileMap.prototype = {
+  get: function (i, j) {
+    return (this.tiles[i] && this.tiles[i][j]) || null;
+  },
+
   select: function (i, j) {
-    var tile = this.tiles[i][j];
+    var tile = this.get(i, j);
+    if (!tile) {
+      return;
+    }
     tile.selected = true;
     TileSet.select(tile.tile_set, tile.cont, i, j, this);
   },
   deselect: function (i, j) {
-    var tile = this.tiles[i][j];
+    var tile = this.get(i, j);
+    if (!tile) {
+      return;
+    }
     tile.selected = false;
     TileSet.deselect(tile.tile_set, tile.cont, i, j, this);
   },

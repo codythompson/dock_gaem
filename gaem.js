@@ -7,14 +7,17 @@ var test_setup = function (gaem) {
   });
   gaem.stage.addChild(tm.cont);
 
-  camera = new Camera({map: tm});
+  var camera = new Camera({map: tm});
   camera.ij((tm.get_tiles_wide()-1)/2, (tm.get_tiles_high()-1)/2);
   camera.scale(0.3);
 
-  ctrls = new Controls({
+  var ctrls = new Controls({
     camera: camera,
     mode: Controls.modes.select_box
   });
+
+  dock_gaem.camera = camera;
+  dock_gaem.controls = ctrls;
 
   cross_hair = PIXI.Sprite.fromImage('assets/rect_med.png');
   cross_hair.anchor.x = 0.5;
@@ -31,6 +34,7 @@ var dock_gaem = {
   renderer: null,
   stage: null,
   camera: null,
+  controls: null,
   w: null,
   h: null,
 
@@ -61,6 +65,7 @@ var dock_gaem = {
 
     stats.begin();
 
+    this.controls && this.controls.update();
     this.renderer.render(this.stage);
 
     stats.end();
