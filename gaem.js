@@ -25,12 +25,16 @@ var test_setup = function (gaem) {
 
   var grid_up = PIXI.Sprite.fromImage('assets/box_select_icon.png');
   grid_up.x = 8;
+  grid_up.y = 8;
   var grid_skirt = PIXI.Sprite.fromImage('assets/button_up.png');
   var grid_down = PIXI.Sprite.fromImage('assets/box_select_icon.png');
   grid_down.x = -8;
+  grid_down.y = -8;
   var grid_button = new UIButton({
     up_sprites: [grid_up, grid_skirt],
     down_sprites: [grid_down],
+    y: 100,
+    x: left_panel.cont.width / 2
   });
   left_panel.add_button(grid_button);
 

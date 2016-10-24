@@ -7,7 +7,7 @@ var UIButton = function (options) {
     y: 0,
     w: null,
     h: null,
-    ui_containter: null
+    on_tap: null
   });
 
   if (options.w === null) {
@@ -46,20 +46,27 @@ var UIButton = function (options) {
   this.cont.height = options.h;
   this.cont.interactive = true;
 
-  var self = this;
-  this.cont.touchstart = function (e) {
-    self.touchstart(e);
-  };
-  this.cont.touchend = function (e) {
-    self.touchend(e);
-  };
+  this.touchstart = this.touchstart.bind(this);
+  this.touchend = this.touchend.bind(this);
+  this.touchendoutside = this.touchendoutside.bind(this);
+  this.cont.on('touchstart', this.touchstart);
+  this.cont.on('touchend', this.touchend);
+  this.cont.on('touchendoutside', this.touchendoutside);
 
-  for (var i; i < options.up_sprites.length; i++) {
+  this.on_tap = options.on_tap;
+
+  for (var i = 0; i < options.up_sprites.length; i++) {
+    options.up_sprites[i].anchor.x = 0.5;
+    options.up_sprites[i].anchor.y = 0.5;
     this.cont.addChild(options.up_sprites[i]);
   }
-  for (var i; i < options.down_sprites.length; i++) {
+  for (var i = 0; i < options.down_sprites.length; i++) {
+    options.down_sprites[i].anchor.x = 0.5;
+    options.down_sprites[i].anchor.y = 0.5;
     this.cont.addChild(options.down_sprites[i]);
   }
+
+  this.deselect();
 };
 UIButton.prototype = {
   select: function () {
@@ -82,6 +89,10 @@ UIButton.prototype = {
     this.select();
   },
   touchend: function (e) {
+    this.on_tap && this.on_tap();
+    this.deselect();
+  },
+  touchendoutside: function (e) {
     this.deselect();
   },
 };
