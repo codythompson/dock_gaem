@@ -19,6 +19,21 @@ var test_setup = function (gaem) {
   dock_gaem.camera = camera;
   dock_gaem.controls = ctrls;
 
+  left_panel = new UIContainer();
+  left_panel.cont.visible = true;
+
+
+  var grid_up = PIXI.Sprite.fromImage('assets/box_select_icon.png');
+  grid_up.x = 8;
+  var grid_skirt = PIXI.Sprite.fromImage('assets/button_up.png');
+  var grid_down = PIXI.Sprite.fromImage('assets/box_select_icon.png');
+  grid_down.x = -8;
+  var grid_button = new UIButton({
+    up_sprites: [grid_up, grid_skirt],
+    down_sprites: [grid_down],
+  });
+  left_panel.add_button(grid_button);
+
   cross_hair = PIXI.Sprite.fromImage('assets/rect_med.png');
   cross_hair.anchor.x = 0.5;
   cross_hair.anchor.y = 0.5;
@@ -43,7 +58,7 @@ var dock_gaem = {
     this.w = window.innerWidth;
     this.h = window.innerHeight;
 
-    this.renderer = PIXI.autoDetectRenderer(this.w, this.h, {transparent : true});
+    this.renderer = PIXI.autoDetectRenderer(this.w, this.h, {backgroundColor: 0x88ff88});
     document.body.appendChild(this.renderer.view);
 
     this.stage = new PIXI.Container();
