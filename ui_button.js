@@ -89,8 +89,8 @@ UIButton.prototype = {
     this.select();
   },
   touchend: function (e) {
-    this.on_tap && this.on_tap();
     this.deselect();
+    this.on_tap && this.on_tap();
   },
   touchendoutside: function (e) {
     this.deselect();
