@@ -7,7 +7,8 @@ var UIButton = function (options) {
     y: 0,
     w: null,
     h: null,
-    on_tap: null
+    on_tap: null,
+    on_touch_out: null
   });
 
   if (options.w === null) {
@@ -54,6 +55,7 @@ var UIButton = function (options) {
   this.cont.on('touchendoutside', this.touchendoutside);
 
   this.on_tap = options.on_tap;
+  this.on_touch_out = options.on_touch_out;
 
   for (var i = 0; i < options.up_sprites.length; i++) {
     options.up_sprites[i].anchor.x = 0.5;
@@ -94,6 +96,7 @@ UIButton.prototype = {
   },
   touchendoutside: function (e) {
     this.deselect();
+    this.on_touch_out && this.on_touch_out();
   },
 };
 
