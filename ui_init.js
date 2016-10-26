@@ -42,6 +42,7 @@ var init_control_selector = function (game, controls) {
       game.controls.set_mode(ix);
     }
   });
+  mode_group.select(0);
 
   game.stage.addChild(left_panel.cont);
 };

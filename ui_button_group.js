@@ -11,17 +11,7 @@ var UIButtonGroup = function (options) {
   var create_on_tap = function (ix, orig_cb) {
     return function () {
       orig_cb && orig_cb();
-      var button = self.buttons[ix];
-      for (var i = 0; i < self.buttons.length; i++) {
-        var button = self.buttons[i];
-        if (ix === i) {
-          self.selected = ix;
-          button.select();
-        } else {
-          button.deselect();
-        }
-      }
-      self.on_select && self.on_select(ix);
+      self.select(ix);
     };
   };
   var create_on_touch_out = function (ix, orig_cb) {
@@ -38,6 +28,20 @@ var UIButtonGroup = function (options) {
     button.on_tap = create_on_tap(i, orig_tap);
     var orig_out = button.on_touch_out || null;
     button.on_touch_out = create_on_touch_out(i, orig_out);
+  }
+};
+UIButtonGroup.prototype = {
+  select: function (ix) {
+    for (var i = 0; i < this.buttons.length; i++) {
+      var button = this.buttons[i];
+      if (ix === i) {
+        this.selected = ix;
+        button.select();
+      } else {
+        button.deselect();
+      }
+    }
+    this.on_select && this.on_select(ix);
   }
 };
 
