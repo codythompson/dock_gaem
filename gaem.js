@@ -28,6 +28,7 @@ var dock_gaem = {
   controls: null,
   w: null,
   h: null,
+  pause: false,
 
   init: function () {
     this.w = window.innerWidth;
@@ -45,6 +46,16 @@ var dock_gaem = {
     test_setup(this);
 
     var self = this;
+    window.onblur = function () {
+      console.log('[dock_gaem] auto pausing');
+      self.pause = true;
+    };
+    window.onfocus = function () {
+      console.log('[dock_gaem] auto resuming');
+      self.pause = false;
+      self._update_closure();
+    };
+
     this._update_closure = function () {
       self.update();
     };
@@ -52,7 +63,9 @@ var dock_gaem = {
   },
 
   update: function () {
-    requestAnimationFrame(this._update_closure);
+    if (!this.pause) {
+      requestAnimationFrame(this._update_closure);
+    }
 
     stats.begin();
 
