@@ -43,18 +43,17 @@ TileSet.create = function (name, options) {
       cont.removeChildAt(0);
     },
     select: function (cont, i, j, map) {
-      this.original_tint = cont.getChildAt(0).tint;
+      cont.original_tint = cont.getChildAt(0).tint;
       for (var i = 0; i < cont.children.length; i++) {
         cont.getChildAt(i).tint = this.select_tint;
       }
     },
     deselect: function (cont, i, j, map) {
       for (var i = 0; i < cont.children.length; i++) {
-        cont.getChildAt(i).tint = this.original_tint;
+        cont.getChildAt(i).tint = SpritePool.pools[this.name].color;
       }
     }
   });
-  this.original_tint = 0xffffff;
   var tile_set = new TileSet(options);
   TileSet.sets[tile_set.name] = tile_set;
 };

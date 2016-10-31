@@ -6,6 +6,7 @@ var test_setup = function (gaem) {
     tiles_high: 5,
   });
   gaem.stage.addChild(tm.cont);
+  gaem.map = tm;
 
   init_ui(gaem, tm);
 
@@ -26,6 +27,7 @@ var dock_gaem = {
   stage: null,
   camera: null,
   controls: null,
+  map: null,
   w: null,
   h: null,
   pause: false,
@@ -45,16 +47,18 @@ var dock_gaem = {
 
     test_setup(this);
 
+    Controller.init(this);
+
     var self = this;
-    window.onblur = function () {
-      console.log('[dock_gaem] auto pausing');
-      self.pause = true;
-    };
-    window.onfocus = function () {
-      console.log('[dock_gaem] auto resuming');
-      self.pause = false;
-      self._update_closure();
-    };
+    // window.onblur = function () {
+    //   console.log('[dock_gaem] auto pausing');
+    //   self.pause = true;
+    // };
+    // window.onfocus = function () {
+    //   console.log('[dock_gaem] auto resuming');
+    //   self.pause = false;
+    //   self._update_closure();
+    // };
 
     this._update_closure = function () {
       self.update();

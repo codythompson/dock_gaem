@@ -107,12 +107,6 @@ var init_control_selector = function (game, controls) {
     y: 450
   });
   tile_panel.add_button(dock_button);
-
-  // tile_group = new UIButtonGroup({
-  //   buttons: [grass_button]
-  // });
-
-
 };
 
 

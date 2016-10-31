@@ -123,6 +123,7 @@ SelectBoxControls.prototype = {
     if (!this.start_loc || this.locked) {
       this.start_loc = null;
       this.end_loc = null;
+      this.ended = false;
       return;
     }
 

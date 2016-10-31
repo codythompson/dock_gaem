@@ -18,7 +18,7 @@ var TileMap = function (options) {
   this.cont.addChild(this.tile_cont);
   this.cont.addChild(this.grid_cont);
 
-  var tiles = []
+  var tiles = [];
   for (var i = 0; i < options.tiles_wide; i++) {
     var column = [];
     for (var j = 0; j < options.tiles_high; j++) {
@@ -60,16 +60,28 @@ TileMap.prototype = {
   },
 
   set: function (tile_set, i, j) {
+    var tile = this.get(i, j);
+    if (!tile) {
+      return;
+    }
+    console.log('setting', tile_set, 'to', i, j);
     this.release(i, j);
     var cont = TileSet.create_sprites(tile_set, i, j, this);
-    this.tiles[i][j].tile_set = tile_set;
-    this.tiles[i][j].cont = cont;
-    dock_gaem.stage.addChild(cont);
+    if (!cont) {
+      console.log('cont is null');
+    }
+    tile.tile_set = tile_set;
+    tile.cont = cont;
+    this.tile_cont.addChild(cont);
   },
 
   release: function (i, j) {
-    var tile = this.tiles[i][j];
-    dock_gaem.stage.removeChild(tile.cont);
+    var tile = this.get(i, j);
+    if (!tile) {
+      return;
+    }
+    console.log('releasing', i, j);
+    this.tile_cont.removeChild(tile.cont);
     TileSet.release_sprites(tile.tile_set, tile.cont, i, j, this);
     tile.tile_set = null;
   },
