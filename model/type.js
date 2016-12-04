@@ -4,11 +4,11 @@
 
 var Type = function (init_obj) {
   init_obj = init_obj || {};
-  init_obj.type = init_obj.type || 'Type';
+  init_obj.data_type = init_obj.data_type || 'Type';
 
   scope.model.DataObject.call(this, init_obj);
 
-  this.names = [];
+  this.names = this.names || [];
 };
 
 Type.prototype = Object.create(scope.model.DataObject.prototype);

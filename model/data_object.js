@@ -6,19 +6,19 @@ var DataObject = function (init_obj) {
   this.dirty = false;
 
   if (typeof init_obj === 'object') {
-    this.type = init_obj.type || 'DataObject';
+    this.data_type = init_obj.data_type || 'DataObject';
 
     var val;
     for (var field in init_obj) {
       val = init_obj[field];
-      if (typeof val === 'object' && val.type) {
-        this[field] = new scope.model[val.type](val);
+      if (typeof val === 'object' && val.data_type) {
+        this[field] = new scope.model[val.data_type](val);
       } else {
         this[field] = val;
       }
     }
   } else {
-    this.type = 'DataObject';
+    this.data_type = 'DataObject';
   }
 };
 DataObject.prototype = {
