@@ -7,12 +7,12 @@ var Complex = function (init_obj) {
   init_obj.data_type = init_obj.data_type || 'Complex';
   scope.model.DataObject.call(this, init_obj);
 
-  this.tiles = init_obj.tiles || [];
-  this.x = init_obj.x || 0;
-  this.y = init_obj.y || 0;
-  this.scale_x = init_obj.scale_x || 0;
-  this.scale_y = init_obj.scale_y || 0;
-  this.rotation = init_obj.rotation || 0;
+  this.tiles = this.tiles || [];
+  this.x = this.x || 0;
+  this.y = this.y || 0;
+  this.scale_x = this.scale_x || 0;
+  this.scale_y = this.scale_y || 0;
+  this.rotation = this.rotation || 0;
 };
 Complex.prototype = Object.create(scope.model.DataObject.prototype);
 
