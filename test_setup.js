@@ -9,15 +9,19 @@ var typeB = new dgm.Type({
   names: ['b', 'B', 'bee']
 });
 
-var tileA = new dgm.Tile({
-  type: typeA.to_obj()
-});
+complex0 = new dgm.Complex();
 
-var tileB = new dgm.Tile();
-tileB.type = typeB;
+complex0.set_tile(0, 0, new dgm.Tile({type: typeA}));
+complex0.set_tile(0, 1, new dgm.Tile({type: typeA}));
+complex0.set_tile(0, 2, new dgm.Tile({type: typeA}));
 
-// console.log(tileA.to_obj());
-console.log(tileA);
+complex0.set_tile(1, 0, new dgm.Tile({type: typeB}));
+complex0.set_tile(1, 1, new dgm.Tile({type: typeB}));
+complex0.set_tile(1, 2, new dgm.Tile({type: typeB}));
 
-// console.log(tileB.to_obj());
-console.log(tileB);
+complex0.set_tile(2, 0, new dgm.Tile({type: typeA}));
+complex0.set_tile(2, 1, new dgm.Tile({type: typeA}));
+complex0.set_tile(2, 2, new dgm.Tile({type: typeB}));
+
+console.log(complex0);
+
