@@ -10,8 +10,8 @@ var Complex = function (init_obj) {
   this.tiles = this.tiles || [];
   this.x = this.x || 0;
   this.y = this.y || 0;
-  this.scale_x = this.scale_x || 0;
-  this.scale_y = this.scale_y || 0;
+  this.scale_x = this.scale_x || 1;
+  this.scale_y = this.scale_y || 1;
   this.rotation = this.rotation || 0;
 };
 Complex.prototype = Object.create(scope.model.DataObject.prototype);
