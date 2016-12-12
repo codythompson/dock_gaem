@@ -5,7 +5,7 @@ WorldRenderer
 ComplexRenderer
 - renders complexes, world_mv * complex_mv
 TileRenderer
-- renders individual tiles, world_mv * complex_mv * tile_mv
+- renders individual tiles, world_mv * complex_mv * tile_pos
 TypeDrawableMap
 - retrieves a drawable based on tile names
 Drawable
