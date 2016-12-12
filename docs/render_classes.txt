@@ -1,0 +1,15 @@
+WorldRenderer
+- renders its floors array of arrays of complexes, world_mv
+- doesn't render floors above specified elevation
+- renders floors below specified elevation with a diminished color
+ComplexRenderer
+- renders complexes, world_mv * complex_mv
+TileRenderer
+- renders individual tiles, world_mv * complex_mv * tile_mv
+TypeDrawableMap
+- retrieves a drawable based on tile names
+Drawable
+- stores a texture, uv coords, opacity, and tint
+Texture
+- loads/stores a gl texture
+
