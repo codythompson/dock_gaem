@@ -9,6 +9,7 @@ var World = function (init_obj) {
 
   // each floor is an array of complexes
   this.floors = this.floors || [];
+  this.visible_floor = 0;
 
   this.x = this.x || 0;
   this.y = this.y || 0;
