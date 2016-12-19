@@ -9,7 +9,7 @@ TileRenderer
 TypeDrawableMap
 - retrieves a drawable based on tile names
 Drawable
-- stores a texture, uv coords, opacity, and tint
+- stores a draw offset, texture, uv coords, opacity, and tint
 Texture
 - loads/stores a gl texture
 
