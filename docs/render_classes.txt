@@ -1,11 +1,11 @@
 WorldRenderer
-- renders its floors array of arrays of complexes, world_mv
+- renders its floors array
 - doesn't render floors above specified elevation
 - renders floors below specified elevation with a diminished color
+FloorRenderer
+- renders a floor
 ComplexRenderer
 - renders complexes, world_mv * complex_mv
-TileRenderer
-- renders individual tiles, world_mv * complex_mv * tile_pos
 TypeDrawableMap
 - retrieves a drawable based on tile names
 Drawable
@@ -13,3 +13,65 @@ Drawable
 Texture
 - loads/stores a gl texture
 
+================================================================================
+WorldRenderer
+--------------------------------------------------------------------------------
+world - prop - model.World
+  a world model instance that will be rendered
+
+children - prop - array of floor renderers
+  an array of floor renderer instances
+
+persp_mat - prop - 4x4 mat
+  the perspective matrix
+
+mv_mat - prop - 4x4 mat
+  the model view matrix composed from the worlds location, scale, and rotation
+
+update - method
+  updates the matrices based on world model and call child floors update
+
+render - method
+  renders 
+================================================================================
+
+================================================================================
+FloorRenderer
+--------------------------------------------------------------------------------
+floor - prop - model.Floor
+  the floor model instance that will be rendered
+
+floor_index - prop - int
+  the floor number of the floor this renderer is rendering
+
+parent - prop - WorldRenderer
+  the parent world renderer
+
+children - prop - array of ComplexRenderer instances
+  the child complex renderers
+
+update - method
+  call child complexes update
+
+render - method
+  renders
+================================================================================
+
+================================================================================
+ComplexRenderer
+--------------------------------------------------------------------------------
+complex - prop - model.World
+  a complex model instance that will be rendered
+
+parent - prop - FloorRenderer
+  the parent FloorRenderer
+
+mv_mat - prop - 4x4 mat
+  the complex's model view matrix
+
+update - method
+  updates the model view matrix
+
+render - method
+  renders all of the tiles
+================================================================================
