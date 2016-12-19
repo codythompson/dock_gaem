@@ -17,4 +17,6 @@ var World = function (init_obj) {
   this.rotation = this.rotation || 0;
 };
 
+scope.model.World = World;
+
 })(window.$dock_game);

@@ -27,5 +27,8 @@ var floor0 = new dgm.Floor({
   complexes: [complex0]
 });
 
-console.log(floor0);
+var world = new dgm.World();
+world.floors.push(floor0);
+
+console.log(world);
 
