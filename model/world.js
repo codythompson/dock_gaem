@@ -7,7 +7,6 @@ var World = function (init_obj) {
   init_obj.data_type = init_obj.data_type || 'World';
   scope.model.DataObject.call(this, init_obj);
 
-  // each floor is an array of complexes
   this.floors = this.floors || [];
   this.visible_floor = 0;
 
