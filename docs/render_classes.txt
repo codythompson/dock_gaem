@@ -1,11 +1,16 @@
-WorldRenderer
+WorldState
 - renders its floors array
 - doesn't render floors above specified elevation
 - renders floors below specified elevation with a diminished color
-FloorRenderer
+FloorState
 - renders a floor
-ComplexRenderer
+ComplexState
 - renders complexes, world_mv * complex_mv
+Renderer
+- calls the actual gl draw calls
+- TODO decides whether to use an already rendered texture, or a per child render
+Camera
+- converts between varous coord spaces (i.e. tile to world, tile to pixel)
 TypeDrawableMap
 - retrieves a drawable based on tile names
 Drawable
@@ -14,13 +19,13 @@ Texture
 - loads/stores a gl texture
 
 ================================================================================
-WorldRenderer
+WorldState
 --------------------------------------------------------------------------------
 world - prop - model.World
   a world model instance that will be rendered
 
-children - prop - array of floor renderers
-  an array of floor renderer instances
+children - prop - array of floor states
+  an array of floor state instances
 
 persp_mat - prop - 4x4 mat
   the perspective matrix
@@ -36,19 +41,19 @@ render - method
 ================================================================================
 
 ================================================================================
-FloorRenderer
+FloorState
 --------------------------------------------------------------------------------
 floor - prop - model.Floor
   the floor model instance that will be rendered
 
 floor_index - prop - int
-  the floor number of the floor this renderer is rendering
+  the floor number of the floor this state represents
 
-parent - prop - WorldRenderer
-  the parent world renderer
+parent - prop - WorldState
+  the parent world state
 
-children - prop - array of ComplexRenderer instances
-  the child complex renderers
+children - prop - array of ComplexState instances
+  the child complex states
 
 update - method
   call child complexes update
@@ -58,13 +63,13 @@ render - method
 ================================================================================
 
 ================================================================================
-ComplexRenderer
+ComplexState
 --------------------------------------------------------------------------------
 complex - prop - model.World
   a complex model instance that will be rendered
 
-parent - prop - FloorRenderer
-  the parent FloorRenderer
+parent - prop - FloorState
+  the parent FloorState
 
 mv_mat - prop - 4x4 mat
   the complex's model view matrix
@@ -74,4 +79,21 @@ update - method
 
 render - method
   renders all of the tiles
+================================================================================
+
+================================================================================
+Render
+--------------------------------------------------------------------------------
+camera - prop - Camera
+  a camera instance used to convert between various coord spaces
+
+render_tile - method - ComoplexState complex, int i, int j
+  renders a single tile from a complex
+
+render_complex - method - ComplexState complex
+
+render_floor - method - FloorState floor, int floor_index
+
+render_world - method - WorldState world
+
 ================================================================================
