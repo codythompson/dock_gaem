@@ -23,5 +23,9 @@ complex0.set_tile(2, 0, new dgm.Tile({type: typeA}));
 complex0.set_tile(2, 1, new dgm.Tile({type: typeA}));
 complex0.set_tile(2, 2, new dgm.Tile({type: typeB}));
 
-console.log(complex0);
+var floor0 = new dgm.Floor({
+  complexes: [complex0]
+});
+
+console.log(floor0);
 
