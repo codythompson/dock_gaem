@@ -10,6 +10,7 @@ Renderer
 - calls the actual gl draw calls
 - TODO decides whether to use an already rendered texture, or a per child render
 Camera
+- creates the projection matrix
 - converts between varous coord spaces (i.e. tile to world, tile to pixel)
 TypeDrawableMap
 - retrieves a drawable based on tile names
@@ -27,17 +28,11 @@ world - prop - model.World
 children - prop - array of floor states
   an array of floor state instances
 
-persp_mat - prop - 4x4 mat
-  the perspective matrix
-
 mv_mat - prop - 4x4 mat
   the model view matrix composed from the worlds location, scale, and rotation
 
 update - method
   updates the matrices based on world model and call child floors update
-
-render - method
-  renders 
 ================================================================================
 
 ================================================================================
@@ -57,9 +52,6 @@ children - prop - array of ComplexState instances
 
 update - method
   call child complexes update
-
-render - method
-  renders
 ================================================================================
 
 ================================================================================
@@ -75,25 +67,77 @@ mv_mat - prop - 4x4 mat
   the complex's model view matrix
 
 update - method
-  updates the model view matrix
-
-render - method
-  renders all of the tiles
+  updates the model view matrix and child tiles
 ================================================================================
 
 ================================================================================
-Render
+TileState
+--------------------------------------------------------------------------------
+tile - prop - model.Tile
+  the tile model instance that will be rendered
+
+parent - prop - ComplexState
+  the parent ComplexState
+
+drawable - prop - Drawable
+  the drawable that will be rendered
+
+update - method
+  updates the drawable
+================================================================================
+
+================================================================================
+Renderer
 --------------------------------------------------------------------------------
 camera - prop - Camera
   a camera instance used to convert between various coord spaces
 
-render_tile - method - ComoplexState complex, int i, int j
-  renders a single tile from a complex
+render_tile - method - model.Tile tile, int i, int j
+  renders a single tile
 
 render_complex - method - ComplexState complex
+  renders a complex
 
 render_floor - method - FloorState floor, int floor_index
+  renders a floor
 
 render_world - method - WorldState world
+  renders a world
+================================================================================
 
+================================================================================
+Camera
+--------------------------------------------------------------------------------
+x - prop - number
+  the offset from the center of the world that is being drawn
+
+y - prop - number
+  the offset from the center of the world that is being drawn
+
+rotation - prop - number
+  how much the view of the world is rotated by
+
+scale_x - prop - number
+  how much the view of the world is scaled by
+
+scale_y - prop - number
+  how much the view of the world is scaled by
+
+width - prop - number
+  the width of the ortho projection
+
+height - prop - number
+  the height of the ortho projection
+
+projection_mat - prop - 4x4 mat
+  the projection matrix
+
+mv_mat - prop - 4x4 mat
+  the model view matrix for the camera
+
+add_verts - static method - Float32Array buffer, int start_ix, model.Tile, number i, number j
+  adds the vertices for a tile at i,j
+
+create_mv - static method - number x, number y, scale_x, scale_y, rotation
+  creates a 4x4 model view matrix for the given args
 ================================================================================
