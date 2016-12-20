@@ -43,3 +43,8 @@ motest = new MoTest({
 });
 console.log(motest);
 
+motest.dirty = false;
+console.log('false?:', motest.dirty, motest._meta.dirty);
+motest.mmk = null;
+console.log('true?:', motest.dirty, motest._meta.dirty);
+

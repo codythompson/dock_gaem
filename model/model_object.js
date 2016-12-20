@@ -11,6 +11,9 @@ var ModelObject = function (type, args, required, defaults) {
     ModelObject.throw_error('"_meta" is not allowed as an argument name', 'ModelObject');
   }
 
+  if (args && typeof args.dirty !== 'undefined') {
+    ModelObject.throw_error('"dirty" is not allowed as an argument name', 'ModelObject');
+  }
   ModelObject.check_required(type, args, required);
   args = ModelObject.defaults(args, defaults);
 
@@ -19,14 +22,12 @@ var ModelObject = function (type, args, required, defaults) {
     dirty: true,
     props: ModelObject.define_props(this, args)
   };
-};
 
-ModelObject.prototype.is_dirty = function (val) {
-  if (typeof val !== 'undefined') {
-    this._meta.dirty = val;
-  }
+  Object.defineProperty(this, 'dirty', {
+    get: function () { return this._meta.dirty; },
+    set: function (val) { this._meta.dirty = val; },
+  });
 
-  return this._meta.dirty;
 };
 
 ModelObject.throw_error = function (message, type, method) {
@@ -106,7 +107,7 @@ ModelObject.define_prop = function (instance, props, name, value) {
   props[name] = value;
   Object.defineProperty(instance, name, {
     get: function () { return props[name]; },
-    set: function (val) { instance.is_dirty(true); props[name] = val; }
+    set: function (val) { instance._meta.dirty = true; props[name] = val; }
   });
 };
 ModelObject.define_props = function (instance, args) {
