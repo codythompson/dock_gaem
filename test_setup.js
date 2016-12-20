@@ -1,34 +1,45 @@
 // model namespace
 var dgm = $dock_game.model;
 
-var typeA = new dgm.Type();
-typeA.set_name(0, 'a');
-typeA.set_name(1, 'A');
+var MoTest = function (args) {
+  dgm.ModelObject.call(this, 'MoTest', args,
+    [
+      'mmk', 
+      'right'
+    ], {
+      well: true,
+      truest: 'nope',
+      ok: null
+    }
+  );
+};
+MoTest.prototype = Object.create(dgm.ModelObject.prototype);
 
-var typeB = new dgm.Type({
-  names: ['b', 'B', 'bee']
+var motest;
+try {
+  motest = new MoTest();
+  console.log('bad a');
+} catch (e) {
+  console.log(e);
+}
+try {
+  motest = new MoTest({
+    right: 'wellp',
+    well: 0,
+  });
+  console.log('bad b');
+} catch (e) {
+  console.log(e);
+}
+motest = new MoTest({
+  mmk: 'yp',
+  right: 0
 });
-
-complex0 = new dgm.Complex();
-
-complex0.set_tile(0, 0, new dgm.Tile({type: typeA}));
-complex0.set_tile(0, 1, new dgm.Tile({type: typeA}));
-complex0.set_tile(0, 2, new dgm.Tile({type: typeA}));
-
-complex0.set_tile(1, 0, new dgm.Tile({type: typeB}));
-complex0.set_tile(1, 1, new dgm.Tile({type: typeB}));
-complex0.set_tile(1, 2, new dgm.Tile({type: typeB}));
-
-complex0.set_tile(2, 0, new dgm.Tile({type: typeA}));
-complex0.set_tile(2, 1, new dgm.Tile({type: typeA}));
-complex0.set_tile(2, 2, new dgm.Tile({type: typeB}));
-
-var floor0 = new dgm.Floor({
-  complexes: [complex0]
+console.log(motest);
+motest = new MoTest({
+  mmk: 'wat',
+  right: 23,
+  ok: true
 });
-
-var world = new dgm.World();
-world.floors.push(floor0);
-
-console.log(world);
+console.log(motest);
 
