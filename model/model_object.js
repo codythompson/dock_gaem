@@ -30,6 +30,47 @@ var ModelObject = function (type, args, required, defaults) {
 
 };
 
+ModelObject.prototype.to_json = function () {
+  return ModelObject.to_json(this);
+};
+
+ModelObject.to_json = function (obj) {
+  var name, val, j_obj;
+  if (typeof obj === 'string' ||
+      typeof obj === 'number' ||
+      typeof obj === 'string' ||
+      (typeof obj === 'object' && Array.isArray(obj))) {
+    return obj;
+  } else if (typeof obj === 'object' && obj instanceof ModelObject) {
+    j_obj = {
+      _meta: {
+        type: obj._meta.type,
+        dirty: obj._meta.dirty
+      }
+    };
+    for (name in obj._meta.props) {
+      val = ModelObject.to_json(obj._meta.props[name]);
+      if (val !== null) {
+        j_obj[name] = val;
+      }
+    }
+    return j_obj;
+  } else if (typeof obj === 'object') {
+    j_obj = {};
+    for (name in obj) {
+      val = ModelObject.to_json(obj[name]);
+      if (val !== null) {
+        j_obj[name] = val;
+      }
+    }
+    return j_obj;
+  } else {
+    return null;
+  }
+};
+
+// TODO inflate from json
+
 ModelObject.throw_error = function (message, type, method) {
   var str = '';
   if (type) {
