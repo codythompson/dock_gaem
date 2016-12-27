@@ -48,3 +48,20 @@ console.log('false?:', motest.dirty, motest._meta.dirty);
 motest.mmk = null;
 console.log('true?:', motest.dirty, motest._meta.dirty);
 
+/*******************************************************************************
+ * Type
+*******************************************************************************/
+var Type = dgm.Type;
+var typeEmpty = new Type();
+console.log(typeEmpty.names);
+
+var typeA = new Type({
+  names: ['A']
+});
+console.log(typeA.names);
+
+typeA.dirty = false;
+console.log(typeA.dirty);
+typeA.names.push('a');
+console.log(typeA.names);
+console.log(typeA.dirty);

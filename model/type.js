@@ -1,32 +1,16 @@
 'use strict';
 
 (function (scope) {
-
-var Type = function (init_obj) {
-  init_obj = init_obj || {};
-  init_obj.data_type = init_obj.data_type || 'Type';
-
-  scope.model.DataObject.call(this, init_obj);
-
-  this.names = this.names || [];
+var Type = function (args) {
+  scope.ModelObject.call(this, 'Type', args,
+    [],
+    {
+      names: []
+    }
+  );
 };
+Type.prototype = Object.create(scope.ModelObject);
 
-Type.prototype = Object.create(scope.model.DataObject.prototype);
+scope.Type = Type;
 
-Type.prototype.get_name = function (level) {
-  level = level || 0;
-
-  if (level >= 0 && level < this.names.length) {
-    return this.names[level];
-  } else {
-    return null;
-  }
-};
-
-Type.prototype.set_name = function (level, name) {
-  this.names[level] = name;
-};
-
-scope.model.Type = Type;
-
-})(window.$dock_game);
+})(window.$dock_game.model);
