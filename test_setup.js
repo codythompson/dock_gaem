@@ -62,6 +62,6 @@ console.log(typeA.names);
 
 typeA.dirty = false;
 console.log(typeA.dirty);
-typeA.names.push('a');
+typeA.names = ['A', 'a'];
 console.log(typeA.names);
 console.log(typeA.dirty);
