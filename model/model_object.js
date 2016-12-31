@@ -2,7 +2,7 @@
 
 (function (scope) {
 
-var ModelObject = function (type, args, required, defaults) {
+var ModelObject = function (type, args, required, defaults, parent) {
   if (typeof type !== 'string') {
     ModelObject.throw_error('"type" is a required argument', 'ModelObject');
   }
@@ -20,14 +20,19 @@ var ModelObject = function (type, args, required, defaults) {
   this._meta = {
     type: type,
     dirty: true,
-    props: ModelObject.define_props(this, args)
+    props: ModelObject.define_props(this, args),
+    parent: parent || null
   };
 
   Object.defineProperty(this, 'dirty', {
     get: function () { return this._meta.dirty; },
-    set: function (val) { this._meta.dirty = val; },
+    set: function (val) {
+      this._meta.dirty = val;
+      if (this._meta.parent) {
+        this._meta.parent.dirty = true;
+      }
+    },
   });
-
 };
 
 ModelObject.prototype.to_json = function () {
@@ -46,6 +51,7 @@ ModelObject.to_json = function (obj) {
       _meta: {
         type: obj._meta.type,
         dirty: obj._meta.dirty
+        // TODO don't omit parent from this
       }
     };
     for (name in obj._meta.props) {
@@ -148,7 +154,13 @@ ModelObject.define_prop = function (instance, props, name, value) {
   props[name] = value;
   Object.defineProperty(instance, name, {
     get: function () { return props[name]; },
-    set: function (val) { instance._meta.dirty = true; props[name] = val; }
+    set: function (val) {
+      instance._meta.dirty = true;
+      if (instance._meta.parent) {
+        instance._meta.parent.dirty = true;
+      }
+      props[name] = val;
+    }
   });
 };
 ModelObject.define_props = function (instance, args) {
