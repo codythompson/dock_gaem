@@ -65,3 +65,17 @@ console.log(typeA.dirty);
 typeA.names = ['A', 'a'];
 console.log(typeA.names);
 console.log(typeA.dirty);
+
+var Model2DArray = dgm.Model2DArray;
+
+var Tile = dgm.Tile;
+var tileA = new Tile({
+  type: typeA
+});
+var tiles = [[
+  tileA
+]];
+var arr_a = new Model2DArray({
+  array: tiles
+});
+
