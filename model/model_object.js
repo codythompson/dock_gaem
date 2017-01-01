@@ -24,6 +24,13 @@ var ModelObject = function (type, args, required, defaults, parent) {
     parent: parent || null
   };
 
+  Object.defineProperty(this, 'parent', {
+    get: function () { return this._meta.parent; },
+    set: function (val) {
+      this._meta.parent = val;
+    }
+  });
+
   Object.defineProperty(this, 'dirty', {
     get: function () { return this._meta.dirty; },
     set: function (val) {
@@ -156,6 +163,12 @@ ModelObject.define_prop = function (instance, props, name, value) {
     get: function () { return props[name]; },
     set: function (val) {
       instance._meta.dirty = true;
+      if (props[name] instanceof ModelObject) {
+        props[name].parent = null;
+      }
+      if (val instanceof ModelObject) {
+        val.parent = this;
+      }
       if (instance._meta.parent) {
         instance._meta.parent.dirty = true;
       }

@@ -78,4 +78,15 @@ var tiles = [[
 var arr_a = new Model2DArray({
   array: tiles
 });
+tileA.dirty = false;
+arr_a.dirty = false;
+
+console.log('tileA dirty', tileA.dirty);
+console.log('arr_a dirty', arr_a.dirty);
+console.log(tileA.parent);
+tileA.type = new Type({
+  names: ['B']
+});
+console.log('tileA dirty', tileA.dirty);
+console.log('arr_a dirty', arr_a.dirty);
 
