@@ -35,7 +35,7 @@ var ModelObject = function (type, args, required, defaults, parent) {
     get: function () { return this._meta.dirty; },
     set: function (val) {
       this._meta.dirty = val;
-      if (this._meta.parent) {
+      if (val && this._meta.parent) {
         this._meta.parent.dirty = true;
       }
     },
