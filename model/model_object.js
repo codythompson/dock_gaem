@@ -20,9 +20,10 @@ var ModelObject = function (type, args, required, defaults, parent) {
   this._meta = {
     type: type,
     dirty: true,
-    props: ModelObject.define_props(this, args),
+    props: null,
     parent: parent || null
   };
+  ModelObject.define_props(this, args);
 
   Object.defineProperty(this, 'parent', {
     get: function () { return this._meta.parent; },
@@ -158,7 +159,7 @@ ModelObject.defaults = function (args, defaults) {
   return new_args;
 };
 ModelObject.define_prop = function (instance, props, name, value) {
-  props[name] = value;
+  // props[name] = value;
   Object.defineProperty(instance, name, {
     get: function () { return props[name]; },
     set: function (val) {
@@ -175,6 +176,7 @@ ModelObject.define_prop = function (instance, props, name, value) {
       props[name] = val;
     }
   });
+  instance[name] = value;
 };
 ModelObject.define_props = function (instance, args) {
   var props = {};
