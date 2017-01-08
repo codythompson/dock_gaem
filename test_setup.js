@@ -90,3 +90,15 @@ tileA.type = new Type({
 console.log('tileA dirty', tileA.dirty);
 console.log('arr_a dirty', arr_a.dirty);
 
+var Complex = dgm.Complex;
+var complex = new Complex({
+  tile_array: arr_a
+});
+tileA.dirty = false;
+arr_a.dirty = false;
+complex.dirty = false;
+console.log('complex dirty', complex.dirty);
+
+tileA.type.names = ['aaa'];
+console.log('complex dirty', complex.dirty);
+
