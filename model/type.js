@@ -9,7 +9,7 @@ var Type = function (args) {
     }
   );
 };
-Type.prototype = Object.create(scope.ModelObject);
+Type.prototype = Object.create(scope.ModelObject.prototype);
 
 scope.Type = Type;
 
