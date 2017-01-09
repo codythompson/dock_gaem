@@ -102,3 +102,17 @@ console.log('complex dirty', complex.dirty);
 tileA.type.names = ['aaa'];
 console.log('complex dirty', complex.dirty);
 
+var Floor = dgm.Floor;
+var floor = new Floor({
+  complexes: [complex]
+});
+typeA.dirty = false;
+tileA.dirty = false;
+arr_a.dirty = false;
+complex.dirty = false;
+floor.dirty = false;
+
+console.log('floor dirty', floor.dirty);
+tileA.type.names = ['aaaa'];
+console.log('floor dirty', floor.dirty);
+
