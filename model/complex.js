@@ -3,6 +3,11 @@
 (function (scope) {
 
 var Complex = function (args) {
+  if (Array.isArray(args.tile_array)) {
+    args.tile_array = new Model2DArray({
+      array: args.tile_array
+    });
+  }
   scope.ModelObject.call(this, 'Complex', args, [], {
     tile_aray: null,
     x: 0,
