@@ -11,7 +11,7 @@ var Type = function (args) {
   scope.ModelObject.call(this, 'Type', args,
     [],
     {
-      names: []
+      names: null
     }
   );
 };
