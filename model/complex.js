@@ -4,7 +4,7 @@
 
 var Complex = function (args) {
   if (Array.isArray(args.tile_array)) {
-    args.tile_array = new Model2DArray({
+    args.tile_array = new scope.Model2DArray({
       array: args.tile_array
     });
   }
