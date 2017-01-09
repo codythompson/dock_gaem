@@ -51,6 +51,9 @@ console.log('true?:', motest.dirty, motest._meta.dirty);
 /*******************************************************************************
  * Type
 *******************************************************************************/
+var ModelArray = dgm.ModelArray;
+var Model2DArray = dgm.Model2DArray;
+
 var Type = dgm.Type;
 var typeEmpty = new Type();
 console.log(typeEmpty.names);
@@ -62,11 +65,9 @@ console.log(typeA.names);
 
 typeA.dirty = false;
 console.log(typeA.dirty);
-typeA.names = ['A', 'a'];
+typeA.names = new ModelArray({array: ['A', 'a']});;
 console.log(typeA.names);
 console.log(typeA.dirty);
-
-var Model2DArray = dgm.Model2DArray;
 
 var Tile = dgm.Tile;
 var tileA = new Tile({
@@ -99,7 +100,7 @@ arr_a.dirty = false;
 complex.dirty = false;
 console.log('complex dirty', complex.dirty);
 
-tileA.type.names = ['aaa'];
+tileA.type.names = new ModelArray({array: ['aaa']});
 console.log('complex dirty', complex.dirty);
 
 var Floor = dgm.Floor;
@@ -113,6 +114,6 @@ complex.dirty = false;
 floor.dirty = false;
 
 console.log('floor dirty', floor.dirty);
-tileA.type.names = ['aaaa'];
+tileA.type.names.set(0, 'a');
 console.log('floor dirty', floor.dirty);
 

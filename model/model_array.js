@@ -35,7 +35,7 @@ var ModelArray = function (args) {
    * methods
    */
   this.set = (function (i, obj) {
-    this.check_boundss(i);
+    this.check_bounds(i);
     this.dirty = true;
     var old_obj = this.get(i);
     if (old_obj instanceof scope.ModelObject) {
