@@ -35,13 +35,11 @@ motest = new MoTest({
   mmk: 'yp',
   right: 0
 });
-console.log(motest);
 motest = new MoTest({
   mmk: 'wat',
   right: 23,
   ok: true
 });
-console.log(motest);
 
 motest.dirty = false;
 console.log('false?:', motest.dirty, motest._meta.dirty);
@@ -56,18 +54,18 @@ var Model2DArray = dgm.Model2DArray;
 
 var Type = dgm.Type;
 var typeEmpty = new Type();
-console.log(typeEmpty.names);
+console.log('null?', typeEmpty.names);
 
 var typeA = new Type({
   names: ['A']
 });
-console.log(typeA.names);
+console.log('[A]?', typeA.names);
 
 typeA.dirty = false;
-console.log(typeA.dirty);
+console.log('false?', typeA.dirty);
 typeA.names = new ModelArray({array: ['A', 'a']});;
-console.log(typeA.names);
-console.log(typeA.dirty);
+console.log('[A, a]?', typeA.names);
+console.log('true?', typeA.dirty);
 
 var Tile = dgm.Tile;
 var tileA = new Tile({
@@ -82,14 +80,14 @@ var arr_a = new Model2DArray({
 tileA.dirty = false;
 arr_a.dirty = false;
 
-console.log('tileA dirty', tileA.dirty);
-console.log('arr_a dirty', arr_a.dirty);
+console.log('false?', tileA.dirty);
+console.log('false?', arr_a.dirty);
 console.log(tileA.parent);
 tileA.type = new Type({
   names: ['B']
 });
-console.log('tileA dirty', tileA.dirty);
-console.log('arr_a dirty', arr_a.dirty);
+console.log('true?', tileA.dirty);
+console.log('true?', arr_a.dirty);
 
 var Complex = dgm.Complex;
 var complex = new Complex({
@@ -98,10 +96,10 @@ var complex = new Complex({
 tileA.dirty = false;
 arr_a.dirty = false;
 complex.dirty = false;
-console.log('complex dirty', complex.dirty);
+console.log('false?', complex.dirty);
 
 tileA.type.names = new ModelArray({array: ['aaa']});
-console.log('complex dirty', complex.dirty);
+console.log('true?', complex.dirty);
 
 var Floor = dgm.Floor;
 var floor = new Floor({
@@ -113,7 +111,7 @@ arr_a.dirty = false;
 complex.dirty = false;
 floor.dirty = false;
 
-console.log('floor dirty', floor.dirty);
+console.log('false?', floor.dirty);
 tileA.type.names.push('a');
-console.log('floor dirty', floor.dirty);
+console.log('true?', floor.dirty);
 
