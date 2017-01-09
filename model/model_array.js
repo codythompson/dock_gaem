@@ -51,6 +51,14 @@ var ModelArray = function (args) {
     this.check_bounds(i);
     return array[i];
   }).bind(this);
+
+  this.push = (function (obj) {
+    this.dirty = true;
+    if (obj instanceof scope.ModelObject) {
+      obj.parent = this;
+    }
+    array.push(obj);
+  }).bind(this);
 };
 
 ModelArray.prototype = Object.create(scope.ModelObject.prototype);

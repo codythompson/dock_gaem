@@ -114,6 +114,6 @@ complex.dirty = false;
 floor.dirty = false;
 
 console.log('floor dirty', floor.dirty);
-tileA.type.names.set(0, 'a');
+tileA.type.names.push('a');
 console.log('floor dirty', floor.dirty);
 
