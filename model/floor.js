@@ -3,6 +3,7 @@
 (function (scope) {
 
 var Floor = function (args) {
+  args = args || {};
   if (Array.isArray(args.complexes)) {
     args.complexes = new scope.ModelArray({
       array: args.complexes

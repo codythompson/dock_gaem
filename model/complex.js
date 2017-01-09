@@ -3,6 +3,7 @@
 (function (scope) {
 
 var Complex = function (args) {
+  args = args || {};
   if (Array.isArray(args.tile_array)) {
     args.tile_array = new scope.Model2DArray({
       array: args.tile_array
