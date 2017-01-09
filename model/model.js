@@ -2,7 +2,9 @@
 
 (function (scope) {
 
-var model = {};
+var model = {
+  version: '0.0.1'
+};
 
 scope.model = model;
 
