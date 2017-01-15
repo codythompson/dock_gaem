@@ -115,3 +115,20 @@ console.log('false?', floor.dirty);
 tileA.type.names.push('a');
 console.log('true?', floor.dirty);
 
+console.log('world------');
+
+var World = dgm.World;
+var world = new World({
+  floors: [floor]
+});
+typeA.dirty = false;
+tileA.dirty = false;
+arr_a.dirty = false;
+complex.dirty = false;
+floor.dirty = false;
+world.dirty = false;
+
+console.log('false?', world.dirty);
+tileA.type.names.push('Aa');
+console.log('true?', world.dirty);
+
