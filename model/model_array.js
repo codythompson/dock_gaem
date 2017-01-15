@@ -71,4 +71,4 @@ ModelArray.prototype.check_bounds = function (i) {
 
 scope.ModelArray = ModelArray;
 
-})(window.$dock_game.model);
+})(window.$dock.model);

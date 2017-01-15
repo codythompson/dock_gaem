@@ -11,4 +11,4 @@ Tile.prototype = Object.create(scope.ModelObject.prototype);
 
 scope.Tile = Tile;
 
-})(window.$dock_game.model);
+})(window.$dock.model);

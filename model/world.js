@@ -23,4 +23,4 @@ World.prototype = Object.create(scope.ModelObject.prototype);
 
 scope.World = World;
 
-})(window.$dock_game.model);
+})(window.$dock.model);

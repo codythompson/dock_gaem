@@ -76,4 +76,4 @@ Model2DArray.prototype.check_bounds = function (i, j) {
 
 scope.Model2DArray = Model2DArray;
 
-})(window.$dock_game.model);
+})(window.$dock.model);

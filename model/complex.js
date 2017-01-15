@@ -22,4 +22,4 @@ Complex.prototype = Object.create(scope.ModelObject.prototype);
 
 scope.Complex = Complex;
 
-})(window.$dock_game.model);
+})(window.$dock.model);

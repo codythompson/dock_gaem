@@ -191,4 +191,4 @@ ModelObject.define_props = function (instance, args) {
 
 scope.ModelObject = ModelObject;
 
-})(window.$dock_game.model);
+})(window.$dock.model);

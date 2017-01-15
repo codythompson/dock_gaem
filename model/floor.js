@@ -18,4 +18,4 @@ Floor.prototype = Object.create(scope.ModelObject.prototype);
 
 scope.Floor = Floor;
 
-})(window.$dock_game.model);
+})(window.$dock.model);

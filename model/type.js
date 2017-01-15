@@ -19,4 +19,4 @@ Type.prototype = Object.create(scope.ModelObject.prototype);
 
 scope.Type = Type;
 
-})(window.$dock_game.model);
+})(window.$dock.model);

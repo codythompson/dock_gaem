@@ -1,5 +1,5 @@
 // model namespace
-var dgm = $dock_game.model;
+var dgm = $dock.model;
 
 var MoTest = function (args) {
   dgm.ModelObject.call(this, 'MoTest', args,
