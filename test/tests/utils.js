@@ -27,6 +27,9 @@ var test_obj_a = {
   }
 };
 
+/*
+ * missing_required tests
+ */
 var fna = function () {
   return utils.missing_required(test_obj_a, ['a', 'c']);
 };
@@ -52,5 +55,58 @@ test_fn = function () {
 };
 
 scope.run_test(test_fn , 'utils', 'missing_required');
+
+/*
+ * defaults tests
+ */
+test_obj_a = {
+  a: false,
+  b: null,
+  c: 'ok',
+  d: 2,
+  f: {
+    wat: 'ok'
+  }
+};
+
+fna = function () {
+  return utils.defaults(test_obj_a, {
+    c: 'nooo',
+    b: 22,
+    g: 'yep'
+  });
+}
+fnb = function () {
+  return utils.defaults(test_obj_a, {
+    a: true,
+    c: 'nok',
+    d: {wellp: true},
+    f: 'nok'
+  });
+};
+
+test_fn = function () {
+  chai.expect(fna()).to.deep.equal({
+    a: false,
+    b: 22,
+    c: 'ok',
+    d: 2,
+    f: {
+      wat: 'ok'
+    },
+    g: 'yep'
+  });
+  chai.expect(fnb()).to.deep.equal({
+    a: false,
+    b: null,
+    c: 'ok',
+    d: 2,
+    f: {
+      wat: 'ok'
+    }
+  });
+};
+
+scope.run_test(test_fn, 'utils', 'defaults');
 
 })(this);
