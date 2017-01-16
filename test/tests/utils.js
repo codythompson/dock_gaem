@@ -109,4 +109,65 @@ test_fn = function () {
 
 scope.run_test(test_fn, 'utils', 'defaults');
 
+/*
+ * process_args tests
+ */
+test_obj_a = {
+  a: false,
+  b: null,
+  c: 'ok',
+  d: 2,
+  f: {
+    wat: 'ok'
+  }
+};
+
+fn = function () {
+  return utils.process_args(['wellp','ok'], test_obj_a, [['blah', 'ablah']], {
+    mmk: ['lk'],
+    b: 'yep'
+  }); 
+};
+
+fna = function () {
+  return utils.process_args(['wellp','ok'], test_obj_a, [['f', 'g']], {
+    mmk: ['lk'],
+    b: 'yep'
+  }); 
+};
+fnb = function () {
+  return utils.process_args(['wellp','ok'], test_obj_a, [['b', 'a'], 'c']); 
+};
+fnc = function () {
+  return utils.process_args(['wellp','ok'], test_obj_a); 
+};
+
+test_fn = function () {
+  chai.expect(fn).to.throw('[wellp][ok] You must supply at least one of the following arguments: [blah, ablah]');
+  chai.expect(fna()).to.deep.equal({
+    a: false,
+    b: 'yep',
+    c: 'ok',
+    d: 2,
+    f: {wat: 'ok'},
+    mmk: ['lk']
+  });
+  chai.expect(fnb()).to.deep.equal({
+    a: false,
+    b: null,
+    c: 'ok',
+    d: 2,
+    f: {wat: 'ok'}
+  });
+  chai.expect(fnc()).to.deep.equal({
+    a: false,
+    b: null,
+    c: 'ok',
+    d: 2,
+    f: {wat: 'ok'}
+  });
+};
+
+scope.run_test(test_fn, 'utils', 'process_args');
+
 })(this);
