@@ -96,4 +96,6 @@ var utils = {
   },  
 };
 
+scope.utils = utils;
+
 })($dock);
