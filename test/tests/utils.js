@@ -39,7 +39,7 @@ var fnc = function () {
 var fnd = function () {
   return utils.missing_required(test_obj_a, ['a', ['e', 'g']]);
 }
-var fnde = function () {
+var fne = function () {
   return utils.missing_required(test_obj_a, [['f', 'e'], 'b']);
 }
 
@@ -47,7 +47,7 @@ test_fn = function () {
   chai.expect(fna()).to.be.false;
   chai.expect(fnb()).to.equal('g');
   chai.expect(fnc()).to.be.false;
-  chai.expect(fnb()).to.equal(['e', 'g']);
+  chai.expect(fnd()).to.deep.equal(['e', 'g']);
   chai.expect(fne()).to.equal('b');
 };
 
