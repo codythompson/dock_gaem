@@ -65,7 +65,7 @@ var utils = {
 
     // fill in missing values from defaults
     for (key in defaults) {
-      if (typeof args[key] === 'undefined') {
+      if (typeof args[key] === 'undefined' || args[key] === null) {
         new_args[key] = defaults[key];
       }
     }
