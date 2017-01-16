@@ -30,7 +30,8 @@ var utils = {
       if (Array.isArray(req)) {
         var found = false;
         for (var j = 0; j < req.length; j++) {
-          if (args[req[j]]) {
+          var arg = args[req[j]];
+          if (typeof arg !== 'undefined' && arg !== null) {
             found = true;
             break;
           }
@@ -77,19 +78,19 @@ var utils = {
     var missing = this.missing_required(args, reqs);
     if (!missing) {
       // if nothing is missing we can exit
-      return;
+      return args;
     }
 
     var message;
     if (Array.isArray(missing)) {
-      var missing_str = '[ ';
-      for (i in missing) {
+      var missing_str = '[';
+      for (var i in missing) {
         missing_str += missing[i];
         if (i < missing.length - 1) {
           missing_str += ', ';
         }
       }
-      missing_str += ' ]';
+      missing_str += ']';
       message = 'You must supply at least one of the following arguments: ' + missing_str;
     } else {
       message = 'You must supply the following argument: ' + missing;
