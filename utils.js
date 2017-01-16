@@ -29,7 +29,7 @@ var utils = {
       // is required
       if (Array.isArray(req)) {
         var found = false;
-        for (j = 0; j < req.length; j++) {
+        for (var j = 0; j < req.length; j++) {
           if (args[req[j]]) {
             found = true;
             break;
@@ -47,6 +47,9 @@ var utils = {
         }
       }
     }
+
+    // if we reach this it means all required args were found
+    return false;
   },
   defaults: function (args, defaults) {
     args = args || {};
