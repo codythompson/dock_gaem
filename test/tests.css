@@ -1,0 +1,23 @@
+.error {
+  background-color: #faa;
+  color: #a44;
+}
+.success {
+  background-color: #afa;
+  color: #4a4;
+}
+.msg-cont , .msg-cont .msg-title {
+  border: 1px solid;
+  border-radius: 2px;
+  padding: 4px;
+}
+.msg-cont .msg-title {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+/* .msg-cont .msg-title-text { */
+/*   float: left; */
+/* } */
+.msg-cont .msg-title-code-ref {
+  float: right;
+}
