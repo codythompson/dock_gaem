@@ -2,12 +2,14 @@
 
 (function (scope) {
 
+var utils = $dock.utils;
+
 /*
  * constructor
  */
 var GameCanvas = function (args) {
   args = utils.process_args('GameCanvas', args, null, {
-    parent_el: document.body
+    parent_el: document.body,
     canvas: null,
     canvas_id: null
   });
@@ -31,7 +33,7 @@ var GameCanvas = function (args) {
   }
   this.gl = gl;
 };
-GameCanvas.prototype.size_el = function (args, el) {
+GameCanvas.prototype.size_canvas = function (args, el) {
   el.width = window.innerWidth;
   el.height = window.innerHeight;
   el.style.width = '100%';
@@ -57,5 +59,7 @@ GameCanvas.prototype.build_canvas = function (args) {
   }
   return canvas;
 };
+
+scope.GameCanvas = GameCanvas;
 
 })($dock.render);
